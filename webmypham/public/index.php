@@ -17,7 +17,6 @@ else{
     $action="null"; 
 }
 
-
 switch($action){
     case "null":    
         $mathang = $mh->laymathang();   
