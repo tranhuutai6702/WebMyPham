@@ -32,7 +32,7 @@ function laygiohang() {
     $mh = array();
     $mh_db = new MATHANG();
     
-    //Duyệt mảng SESSION giohang và lấy từng id sản phẩm cùng số lượng
+    //Duyệt mảng SESSION giohang và lấy từng id sản sphẩm cùng số lượng
     foreach ($_SESSION['giohang'] as $id => $soluong ) {
         // Gọi hàm lấy thông tin của sản phẩm theo mã sản phẩm
         $m = $mh_db->laymathangtheoid($id);
