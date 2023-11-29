@@ -29,5 +29,29 @@ class DATABASE{
     public static function close(){
         self::$db = null;
     }
+
+    public static function execute_nonquery($sql, $option = array()) {
+        self::getDB();
+        if (self::$db != null) {
+            try {
+                $cmd = self::$db->prepare($sql);
+                if (count($option) > 0) {
+                    for ($i = 0; $i < count($option); $i++) {
+                        $cmd->bindParam($i + 1, $option[$i]);
+                    }
+                }
+                $cmd->execute();
+                $ketqua = $cmd->fetchAll();
+                return $ketqua;
+            } catch (PDOException $ex) {
+                ShowError($ex);
+            }
+        } else {
+            ShowError("Lỗi kết nối cơ sở dữ liệu");
+        }
+        self::disconnect();
+    }
+
+
+
 }
-?>
