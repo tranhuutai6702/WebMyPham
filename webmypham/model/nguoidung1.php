@@ -1,6 +1,31 @@
 <?php
 class NGUOIDUNG{
-	// khai báo các thuộc tính (SV tự viết)
+	private $id;
+    private $email;
+    private $sodienthoai;
+    private $matkhau;
+    private $hoten;
+    private $trangthai;
+    private $loai;
+    private $hinhanh;    
+
+    public function getid(){ return $this->id; }
+    public function setid($value){ $this->id = $value; }
+    public function getemail(){ return $this->email; }
+    public function setemail($value){ $this->email = $value; }
+    public function getsodienthoai(){ return $this->sodienthoai; }
+    public function setsodienthoai($value){ $this->sodienthoai = $value; }
+    public function getmatkhau(){ return $this->matkhau; }
+    public function setmatkhau($value){ $this->matkhau = $value; }
+    public function gethoten(){ return $this->hoten; }
+    public function sethoten($value){ $this->hoten = $value; }
+    public function gettrangthai(){ return $this->trangthai; }
+    public function settrangthai($value){ $this->trangthai = $value; }
+    public function getloai(){ return $this->loai; }
+    public function setloai($value){ $this->loai = $value; }
+    public function gethinhanh(){ return $this->hinhanh; }
+    public function sethinhanh($value){ $this->hinhanh = $value; }
+    
 	
 	public function kiemtranguoidunghople($email,$matkhau){
 		$db = DATABASE::connect();
@@ -39,6 +64,7 @@ class NGUOIDUNG{
 			exit();
 		}
 	}
+
 	
 	// lấy tất cả ng dùng
 	public function laydanhsachnguoidung(){
@@ -57,18 +83,17 @@ class NGUOIDUNG{
 		}
 	}
 
-	// Thêm ng dùng mới, trả về khóa của dòng mới thêm
-	// (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-	public function themnguoidung($email,$matkhau,$sodt,$hoten,$loai){
+	// Thêm nd mới, trả về khóa của dòng mới thêm
+	public function themnguoidung($nguoidung){
 		$db = DATABASE::connect();
 		try{
 			$sql = "INSERT INTO nguoidung(email,matkhau,sodienthoai,hoten,loai) VALUES(:email,:matkhau,:sodt,:hoten,:loai)";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':email',$email);
-			$cmd->bindValue(':matkhau',md5($matkhau));
-			$cmd->bindValue(':sodt',$sodt);
-			$cmd->bindValue(':hoten',$hoten);
-			$cmd->bindValue(':loai',$loai);
+			$cmd->bindValue(':email',$nguoidung->email);
+			$cmd->bindValue(':matkhau',md5($nguoidung->matkhau));
+			$cmd->bindValue(':sodt',$nguoidung->sodt);
+			$cmd->bindValue(':hoten',$nguoidung->hoten);
+			$cmd->bindValue(':loai',$nguoidung->loai);
 			$cmd->execute();
 			$id = $db->lastInsertId();
 			return $id;
@@ -80,18 +105,17 @@ class NGUOIDUNG{
 		}
 	}
 
-	// Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
-	// (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-	public function capnhatnguoidung($id,$email,$sodt,$hoten,$hinhanh){
+	// Cập nhật thông tin ng dùng (tham số: id, họ tên, số đt, email, ảnh đại diện )
+	public function capnhatnguoidung($nguoidung){
 		$db = DATABASE::connect();
 		try{
 			$sql = "UPDATE nguoidung set hoten=:hoten, email=:email, sodienthoai=:sodt, hinhanh=:hinhanh where id=:id";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':id',$id);
-			$cmd->bindValue(':email',$email);
-			$cmd->bindValue(':sodt',$sodt);
-			$cmd->bindValue(':hoten',$hoten);
-			$cmd->bindValue(':hinhanh',$hinhanh);
+			$cmd->bindValue(':id',$nguoidung->id);
+			$cmd->bindValue(':email',$nguoidung->email);
+			$cmd->bindValue(':sodt',$nguoidung->sodt);
+			$cmd->bindValue(':hoten',$nguoidung->hoten);
+			$cmd->bindValue(':hinhanh',$nguoidung->hinhanh);
 			$ketqua = $cmd->execute();            
             return $ketqua;
 		}
@@ -102,14 +126,14 @@ class NGUOIDUNG{
 		}
 	}
 
-	// Đổi mật khẩu
-	public function doimatkhau($email,$matkhau){
+	// Đổi mật khẩu (tham số: email, mật khẩu)
+	public function doimatkhau($nguoidung){
 		$db = DATABASE::connect();
 		try{
 			$sql = "UPDATE nguoidung set matkhau=:matkhau where email=:email";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':email',$email);
-			$cmd->bindValue(':matkhau',md5($matkhau));
+			$cmd->bindValue(':email',$nguoidung->email);
+			$cmd->bindValue(':matkhau',md5($nguoidung->matkhau));
 			$ketqua = $cmd->execute();            
             return $ketqua;
 		}
@@ -120,14 +144,15 @@ class NGUOIDUNG{
 		}
 	}
 
-	// Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3-khách hàng)
-	public function doiloainguoidung($email,$loai){
+	// Đổi quyền (tham số: email, loại người dùng)
+	// loại người dùng: 1 - quản trị, 2 - nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 - khách hàng
+	public function doiloainguoidung($nguoidung){
 		$db = DATABASE::connect();
 		try{
 			$sql = "UPDATE nguoidung set loai=:loai where email=:email";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':email',$email);
-			$cmd->bindValue(':loai',$loai);
+			$cmd->bindValue(':email',$nguoidung->email);
+			$cmd->bindValue(':loai',$nguoidung->loai);
 			$ketqua = $cmd->execute();            
             return $ketqua;
 		}
@@ -138,14 +163,15 @@ class NGUOIDUNG{
 		}
 	}
 
-	// Đổi trạng thái (0 khóa, 1 kích hoạt)
-	public function doitrangthai($id,$trangthai){
+	// Đổi trạng thái (tham số: id, trạng thái)
+	// trạng thái: 0 khóa, 1 kích hoạt)
+	public function doitrangthai($nguoidung){
 		$db = DATABASE::connect();
 		try{
 			$sql = "UPDATE nguoidung set trangthai=:trangthai where id=:id";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':id',$id);
-			$cmd->bindValue(':trangthai',$trangthai);
+			$cmd->bindValue(':id',$nguoidung->id);
+			$cmd->bindValue(':trangthai',$nguoidung->trangthai);
 			$ketqua = $cmd->execute();            
             return $ketqua;
 		}
