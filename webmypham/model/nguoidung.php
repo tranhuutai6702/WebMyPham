@@ -9,7 +9,7 @@ class NGUOIDUNG{
 matkhau=:matkhau AND trangthai=1";
  $cmd = $db->prepare($sql);
  $cmd->bindValue(":email", $email);
- $cmd->bindValue(":matkhau", md5($matkhau));
+ $cmd->bindValue(":matkhau", $matkhau);
  $cmd->execute();
  $valid = ($cmd->rowCount () == 1);
  $cmd->closeCursor ();
