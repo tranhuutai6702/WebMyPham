@@ -17,9 +17,10 @@ else{
     $action="null"; 
 }
 
+
 switch($action){
-    case "null":    
-        $mathang = $mh->laymathang();   
+    case "null": 	
+    	$mathang = $mh->laymathang();	
         include("main.php");
         break;
     case "group": 
@@ -91,48 +92,6 @@ switch($action){
             include("cart.php");
             break;
 
-    case "chovaogio":
-        $id = $_REQUEST['id'];
-        $soluong = $_REQUEST['soluong'];
-
-        if(isset($_SESSION['giohang']['$id'])){
-            $soluong += $_SESSION['giohang']['$id'];
-            $_SESSION['giohang']['$id'] = $soluong;
-        }
-        else{
-            themhangvaogio($id, $soluong);
-        }
-
-        $giohang = laygiohang();
-
-        include("cart.php");
-        break;
-
-    case "xemgiohang":
-
-        $giohang = laygiohang();
-        include("cart.php");
-        break;
-
-    case "capnhatgio":
-        if(isset($_REQUEST['mh'])){
-            $mh = $_REQUEST['mh'];
-            foreach ($mh as $id => $soluong){
-                if ($soluong > 0) 
-                    capnhatsoluong($id, $soluong);
-                else
-                    xoamotmathang($id);
-            }
-        }    
-
-        $giohang = laygiohang();
-        include("cart.php");
-        break;
-    case "xoagiohang":
-
-        xoagiohang();
-        $giohang = laygiohang();
-        include("cart.php");
     default:
         break;
 }
