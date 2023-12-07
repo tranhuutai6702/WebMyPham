@@ -1,11 +1,9 @@
 <?php 
 if(!isset($_SESSION["nguoidung"]))
-header("Location:../Index.php");
+    header("location:../index.php");
 
 require("../../model/database.php");
 require("../../model/danhmuc.php");
-
-
 
 // Xét xem có thao tác nào được chọn
 if(isset($_REQUEST["action"])){

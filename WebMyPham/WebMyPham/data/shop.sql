@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 09, 2023 at 06:57 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th12 02, 2023 lúc 12:53 PM
+-- Phiên bản máy phục vụ: 5.7.25
+-- Phiên bản PHP: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,16 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `shop`
+-- Cơ sở dữ liệu: `shop`
 --
-DROP DATABASE IF EXISTS `shop`;
-CREATE DATABASE IF NOT EXISTS `shop` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `shop`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhmuc`
+-- Cấu trúc bảng cho bảng `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -37,108 +34,108 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `danhmuc`
+-- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`id`, `tendanhmuc`) VALUES
-(1, 'Sản phẩm điện tử'),
-(2, 'Dụng cụ học sinh'),
-(3, 'Dụng cụ văn phòng'),
-(4, 'Sản phẩm giấy');
+(1, 'Kem chóng nắng'),
+(2, 'Toner'),
+(3, 'Son'),
+(4, 'Kem dưỡng');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diachi`
+-- Cấu trúc bảng cho bảng `diachi`
 --
 
 CREATE TABLE `diachi` (
   `id` int(11) NOT NULL,
   `nguoidung_id` int(11) NOT NULL,
   `diachi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `macdinh` tinyint(4) NOT NULL DEFAULT 1
+  `macdinh` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donhang`
+-- Cấu trúc bảng cho bảng `donhang`
 --
 
 CREATE TABLE `donhang` (
   `id` int(11) NOT NULL,
   `nguoidung_id` int(11) NOT NULL,
   `diachi_id` int(11) DEFAULT NULL,
-  `ngay` datetime NOT NULL DEFAULT current_timestamp(),
-  `tongtien` float NOT NULL DEFAULT 0,
+  `ngay` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tongtien` float NOT NULL DEFAULT '0',
   `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donhangct`
+-- Cấu trúc bảng cho bảng `donhangct`
 --
 
 CREATE TABLE `donhangct` (
   `id` int(11) NOT NULL,
   `donhang_id` int(11) NOT NULL,
   `mathang_id` int(11) NOT NULL,
-  `dongia` float NOT NULL DEFAULT 0,
-  `soluong` int(11) NOT NULL DEFAULT 1,
-  `thanhtien` float NOT NULL DEFAULT 0
+  `dongia` float NOT NULL DEFAULT '0',
+  `soluong` int(11) NOT NULL DEFAULT '1',
+  `thanhtien` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mathang`
+-- Cấu trúc bảng cho bảng `mathang`
 --
 
 CREATE TABLE `mathang` (
   `id` int(11) NOT NULL,
   `tenmathang` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mota` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `giagoc` float NOT NULL DEFAULT 0,
-  `giaban` float NOT NULL DEFAULT 0,
-  `soluongton` int(11) NOT NULL DEFAULT 0,
+  `mota` text COLLATE utf8_unicode_ci,
+  `giagoc` float NOT NULL DEFAULT '0',
+  `giaban` float NOT NULL DEFAULT '0',
+  `soluongton` int(11) NOT NULL DEFAULT '0',
   `hinhanh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `danhmuc_id` int(11) NOT NULL,
-  `luotxem` int(11) NOT NULL DEFAULT 0,
-  `luotmua` int(11) NOT NULL DEFAULT 0
+  `luotxem` int(11) NOT NULL DEFAULT '0',
+  `luotmua` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `mathang`
+-- Đang đổ dữ liệu cho bảng `mathang`
 --
 
 INSERT INTO `mathang` (`id`, `tenmathang`, `mota`, `giagoc`, `giaban`, `soluongton`, `hinhanh`, `danhmuc_id`, `luotxem`, `luotmua`) VALUES
-(1, 'Máy Tính Văn Phòng Casio SX 100 - W-DP', '<p>Kích thước (Dài&nbsp;× Rộng × Dày) : 110,5 × 91 × 9,4 mm</p><p>Màn hình lớn dễ dàng đọc dữ liệu</p><p>Có 2 nguồn năng lượng: mặt trời &amp; pin</p>', 200000, 180000, 10, 'images/products/m1.jpg', 1, 1, 0),
-(2, 'Máy Tính Casio FX580VN X-PK (Màu Hồng)', '<p><strong>Máy Tính Casio FX580VN X-PK (Màu Hồng)</strong>&nbsp;thuộc dòng máy tính khoa học ClassWiz, được hãng máy tính Casio Nhật Bản sản xuất dành riêng cho nền giáo dục Việt. Sản phẩm tích hợp tới 521 tính năng, trong đó có rất nhiều tính năng mà các dòng máy tính khoa học trên thị trường hiện nay không có được.</p><p><i><strong>Casio fx-580VN X được phép đưa vào phòng thi</strong></i></p><p><i><strong>Tốc độ xử lý nhanh gấp 4 lần, giảm thời gian tính toán xuống mức tối thiểu</strong></i></p><p><i><strong>521 tính năng, nhiều tính năng mà các máy tính khác không có</strong></i></p><p><i><strong>Mua một lần, dùng nhiều cấp học</strong></i></p><p><i><strong>Hỗ trợ đắc lực giải toán cao cấp ở đại học</strong></i></p><p><i><strong>Dung lượng bộ nhớ lớn gấp 2 lần</strong></i></p><p><i><strong>Độ phân giải gấp 4 lần, hiển thị đầy đủ phép tính</strong></i></p><p><i><strong>Có ngôn ngữ tiếng Việt vô cùng tiện dụng</strong></i></p>', 757000, 681000, 20, 'images/products/m2.jpg', 1, 1, 0),
-(3, 'Máy Tính CASIO FX-880BTG - Màu Xanh Biển', '<p>Máy tính Casio fx-880BTG thuộc dòng máy tính khoa học ClassWiz của hãng máy tính CASIO. Máy tính Casio fx-880BTG đã ra đời với nhiều cải tiến về: thiết kế - giao diện, tính năng nổi trội và độ chính xác cao… để đáp ứng thực tiễn dạy và học tại Việt Nam, đồng thời thay đổi tư duy học tập lâu nay của học sinh.</p><p><i><strong>Tính năng nổi bật:</strong></i></p><p>- QR Code hỗ trợ dạy và học</p><p>- Bảng tính spreadsheet</p><p>- Hộp toán học Math Box</p><p>- Bảng tuần hoàn</p><p>- Kiểm chứng</p><p>- Gian diện mới với thao tác đơn giản hơn</p><p>- Kết quả tính toán chính xác lên đến 23 chữ số</p>', 820000, 738000, 20, 'images/products/m3.jpg', 1, 0, 0),
-(4, 'Máy Tính Khoa Học Thiên Long Flexio Fx680VN Plus - Màu Trắng', '<p><strong>Máy Tính Khoa Học Thiên Long Flexio Fx680VN Plus - Màu Trắng</strong></p><p>512 + 12 Tính Năng. Mày tính đạt chuẩn mang vào phòng thi: Không truyền tín hiệu, Không có chức năng soạn thảo văn bản và thẻ nhớ&nbsp;</p><p>Máy tính có thiết kế hiện đại, cá tính</p><p>Máy mỏng nhẹ với chất liệu bền bỉ, phím bấm có độ chống mòn và mờ cao</p><p>Dàn phím được bố trí khoa học và thuận tiện cho các thao tác trên máy tính</p><p>Độ bền phím bấm lên tới 500.000 lần</p><p>Có tính năng thông báo pin yếu</p>', 635000, 571500, 30, 'images/products/m4.jpg', 1, 5, 0),
-(5, 'Kệ Nhựa 3 Tầng - King Star - Màu Xanh Dương', '<p>Màu sắc trang nhã</p><p>Khay thiết kế 3 tầng&nbsp;tiện dụng</p><p>Thao tác lắp đặt, tháo rời đơn giản, dễ dàng</p><p>Bề mặt có các khe hở, tránh ẩm mốc.</p><p>Khay đựng tài liệu 3 tầng&nbsp;thường được dùng trong các văn phòng công sở, trường học để cất giữ, bảo quản, phân loại các giấy tờ, tài liệu quan trọng</p>', 178000, 160200, 25, 'images/products/v1.jpg', 3, 0, 0),
-(6, 'Bìa Trình Ký Đôi Toppoint A4 TOP-134A - Xanh Lá', '<p>Sản phẩm được làm từ chất liệu nhựa cứng PP cao cấp.</p><p>Thanh kẹp cũng được thiết kế bằng chất liệu có độ bền cao.</p><p>Sản phẩm có kích thước phù hợp với khổ giấy A4.</p><p>Giấy được gọng sắt giữ lại, không lo giấy bị bay hoặc thất lạc khi chờ ký.</p><p>Gọng sắt bền, không bị gãy khi sử dụng quá nhiều.</p>', 52000, 46800, 50, 'images/products/v2.jpg', 3, 0, 0),
-(7, 'Khay Cắm Bút Flexoffice FO-PS01', '<p>Sản phẩm làm bằng nhựa cao cấp, thân thiện với môi trường, an toàn khi sử dụng.</p><p>Có nhiều ngăn để đựng bút viết.</p><p>Thiết kế trong suốt hiện đại, đơn giản nhưng tinh tế với kiểu dáng nhỏ gọn tiện dụng.</p>', 60000, 54000, 30, 'images/products/v3.jpg', 3, 0, 0),
-(8, 'Cắm Bút Moshi 016', '<p>Sản phẩm&nbsp;làm bằng nhựa cao cấp, màu sắc đẹp và bắt mắt.</p><p>Sản&nbsp;phẩm được thiết kế với kiểu dáng đơn giản, kích thước nhỏ gọn không chiếm nhiều diện tích.</p><p>Sản phẩm giúp cho việc sắp xếp các đồ dùng nơi bàn làm việc trở nên gọn gàng, ngăn nắp.</p>', 60000, 54000, 20, 'images/products/v4.jpg', 3, 0, 0),
-(9, 'Bìa Còng 5P F4 Kokuyo 285B - Màu Xanh', '<p>Có thiết kế khổ F4 đáp ứng tốt việc lưu trữ số lượng lớn tài liệu và giấy tờ quan trọng.</p><p>Có thể lưu trữ tài liệu thuộc nhiều kích cỡ, phù hợp với hầu hết các loại giấy tờ</p><p>Áp dụng công nghệ tiên tiến của Nhật Bản trong sản xuất đảm bảo chất lượng sản phẩm.</p><p>Chất liệu bìa bằng simili cao cấp, phủ màng OPP với ưu điểm bền chắc, không bám bụi và tránh được nhiều trường hợp cong vênh trong quá trình sử dụng.</p>', 85000, 76500, 10, 'images/products/v5.jpg', 3, 0, 0),
-(10, 'Hộp 24 Kẹp Bướm Màu 41mm - Hồng Hà 6642', '<p>Sản xuất từ chất liệu kim loại cao cấp, được phủ Niken chống gỉ giúp kẹp bướm luôn bền đẹp theo thời gian</p><p>Phần lò xo của kẹp linh hoạt, nhẹ, dễ dùng, không bị lỏng hay bung rời sau nhiều lần sử dụng</p><p>Tay cầm chắc chắn, vừa vặn tạo cảm giác thoải mái khi sử dụng</p><p>Đa dạng đủ mọi kích cỡ từ 15 - 51 mm phù hợp với mọi nhu cầu</p><p>Có 4 màu tươi sáng, hợp xu hướng giúp bàn làm việc nhiều màu sắc, khơi gợi cảm hứng và sáng tạo</p>', 83000, 74700, 15, 'images/products/v6.jpg', 3, 1, 0),
-(11, 'Máy Bấm Giá Hand MX5500 - Màu Xanh', '<p>Sản phẩm&nbsp;là dụng cụ tiện lợi dùng để bấm giá đồng loạt các sản phẩm một cách nhanh chóng.</p><p>Cấu tạo máy bấm đơn giản, giúp bạn dễ dàng bấm in giá và điều chỉnh giá theo ý muốn.</p><p>Sản phẩm được làm bằng chất liệu nhựa chắc chắn, kháng vỡ, cho lực bấm nhẹ, thao tác nhanh chóng và dễ dàng hơn.</p><p>Thiết kế sản phẩm nhỏ gọn, tiện lợi.</p>', 205000, 184500, 10, 'images/products/v7.jpg', 3, 0, 0),
-(12, 'Bộ Compa 8 Món - Bút Chì Kim - Yalong 19020', '<p>Compass được làm từ kim loại cứng cáp, không gỉ sét, độ bền cao.</p><p>Sản phẩm có thiết kế chắc chắn, dễ sử dụng, giúp bạn vẽ hình đẹp và chuẩn xác. Đầu nhọn của một bên chân compass có lực cố định vừa phải, giúp compass đứng vững trên giấy khi quay.</p><p>Bộ sản phẩm được đựng trong hộp thiếc chắc chắn, chất liệu cứng cáp, dễ dàng cất giữ và bảo quản.</p><p>Bộ sản phẩm gồm: 2 compass, 1 chì gỗ, 1 gọt bút chì, 1 gôm, 1 thước kẻ 15 cm, 1 thước đo độ và 2 thước eke.</p>', 53000, 53000, 20, 'images/products/h1.jpg', 2, 0, 0),
-(13, 'Bóp Viết Vải Polyester Stacom 2 Ngăn Hình Hoa Cúc PB-2011C - Màu Xanh Mint', '<p>Sản phẩm được làm bằng chất liệu&nbsp;vải Polyester chống thấm nước và dễ dàng tẩy rửa khi bị bẩn, bền đẹp dùng để sắp xếp các vật dụng, thuận tiện mang đi mọi lúc mọi nơi.</p><p>Kích thước nhỏ gọn với hình dáng chữ nhật cùng họa tiết dễ thương.</p><p>Thiết kế dây khóa kéo chắc chắn, trơn tru, đóng mở dễ dàng, thuận tiện khi sử dụng, độ&nbsp;bền cao.</p><p>Sản phẩm&nbsp;có 2 ngăn, đủ để chứa tất cả những đồ dùng học tập cần thiết.</p>', 70000, 63000, 20, 'images/products/h2.jpg', 2, 3, 0),
-(14, 'Bộ 2 Hộp Thực Hành Toán Và Tiếng Việt Lớp 1', '<p>Chất liệu: Nhựa</p><p>Số Lượng/Bộ: 2</p><p>Trọng lượng (gr): 1100</p><p>Kích Thước Bao Bì: 25.5 x 18.5 x 8.5 cm</p>', 240000, 216000, 20, 'images/products/h3.jpg', 2, 0, 0),
-(15, 'Bảng Bộ 2 Mặt A4 - Queen BS-02 - Viền Cam', '<p>Sản phẩm bao gồm 1 bảng 2 mặt (1 mặt viết phấn, 1 mặt viết lông bảng) và 01 bút lông bảng có sẵn đồ bôi chuyên dành cho học sinh.</p><p>Mặt viết phấn mịn và bám phấn giúp viết rõ nét, chữ viết đẹp.</p><p>Mặt viết lông bảng màu trắng, mặt trơn dễ viết, dễ xóa.</p><p>Bảng có kích thước A4 nhỏ gọn, tiện lợi.</p>', 54000, 48600, 20, 'images/products/h4.jpg', 2, 0, 0),
-(16, 'Bộ Lắp Ghép Mô Hình Kỹ Thuật (Lớp 4, Lớp 5)', '<p>Bộ Lắp Ghép Mô Hình Kỹ Thuật<strong>&nbsp;</strong>là sản phẩm vô cùng tiện lợi, giúp các bé phát triển tư duy một cách tự nhiên nhất theo phương pháp vừa học vừa chơi.</p><p>Bộ dụng cụ có màu sắc đa dạng, tạo sự hứng cho người dùng. Ngoài ra còn được làm bằng chất liệu an toàn, thiết kế dễ dàng tháo ráp và sử dụng.</p>', 92000, 82800, 20, 'images/products/h5.jpg', 2, 0, 0),
-(17, 'Thước Bộ Eke - Keyroad KR971430', '<p>Thước bộ eke là dụng cụ học tập phổ biến, được sử dụng ngay từ cấp tiểu học.</p><p>Bộ thước gồm: 1 thước thẳng 15cm, 1 thước đo độ, 2 thước eke. Sản phẩm được làm bằng chất liệu nhựa cứng siêu bền, thân trong, in dãy vạch số chính xác và sắc nét.</p><p>Túi đựng bộ thước tiện dụng xinh xắn, gọn nhẹ, dễ dàng cất vào cặp.</p><p>Chất liệu nhựa dẻo chất lượng tốt, trong suốt, thẳng, độ bền cao, không tróc chữ số và đặc biệt có thể bẻ cong thoải mái mà không gãy.</p>', 19000, 19000, 20, 'images/products/h6.jpg', 2, 3, 0),
-(18, 'Giấy Photo A4 70gsm - IK Plus (500 Tờ)', '<p>Giấy in A4 của thương hiệu IK Plus được sản xuất từ những nguyên liệu sợi cây cao cấp với quy trình sản xuất theo công nghệ hiện đại và tiên tiến, không chứa chất gây độc hại và mùi khó chịu.</p><p>Được nhập khẩu từ Indonesia đạt tiêu chuẩn ISO 9001 và ISO 14001, nên độ ổn định của giấy luôn đảm bảo chất lượng và uy tín cho người tiêu dùng. Giấy không bị bụi, giúp bảo vệ sức khỏe người sử dụng,thân thiện với môi trường.</p>', 84000, 75600, 20, 'images/products/g1.jpg', 4, 0, 0),
-(19, 'Giấy photo Double A A4/80 gsm', '<p><strong>Giấy photo Double A A4/80 gsm&nbsp;</strong>với kích thước A4, thân thiện với môi trường và thích hợp với hầu hết các loại máy in phun, máy in laser, máy fax laser, máy photocopy.</p><p>Sản phẩm thiết kế khổ giấy A4, thích hợp sử dụng làm giấy in, photo trong các văn phòng hoặc trong gia đình.&nbsp;</p><p>Giấy có bề dày tốt, bề mặt láng mịn, độ cản quang của giấy cao hơn do đó giảm hiện tượng nhìn thấu trang và cho phép sử dụng cả hai mặt giấy một cách toàn diện nhất.</p><p>Chất liệu giấy an toàn, không chứa chất gây độc hại và mùi khó chịu, thân thiện với môi trường.</p>', 108000, 97200, 20, 'images/products/g2.jpg', 4, 0, 0),
-(20, 'Tập Doraemon Fly - A5 5 Ô Ly 96 Trang ĐL 120g/m2 - Campus NB-ADFL96 (Màu Ngẫu Nhiên)', '<p><strong>Chất liệu:</strong></p><p>+ Giấy ngoại nhập chất lượng cao, bề mặt giấy trơn láng, viết đẹp, mượt mà.</p><p>+ Định lượng: 120g/m2.</p><p>+ Đặc biệt, tập 5 ô ly Doraemon Fly của Campus đã được cải tiến hoàn toàn mới với giấy tập đảm bảo 100% không lem cùng bìa tập trắng sáng hơn, dày hơn.</p><p><strong>Thiết kế:</strong></p><p>+ Bìa vở trẻ trung, bắt mắt và là thiết kế độc quyền của Campus.</p><p>+ Hệ thống đánh dấu bằng số thông minh cùng dòng kẻ (5 ô ly 2 x 2mm) in chính xác, rõ nét.</p>', 27000, 27000, 200, 'images/products/g3.jpg', 4, 4, 0),
-(21, 'Sổ Diary Icon The Sun', '<p>Sản phẩm sử dụng loại giấy láng, mịn, không lóa mắt, phù hợp để viết và vẽ rất dễ dàng.</p><p>Sổ được sử dụng lò xo chắc chắn còn giúp bạn dễ dàng lật mở, gập sổ tiết kiệm không gian dễ dàng trong ghi chú, tốc ký.</p><p>Giấy sổ là loại giấy chất lượng cao, độ bền cao, bề mặt giấy mềm mượt, viết êm, không thấm mực và không dễ quăn hay rách, nhàu.</p><p>Cuốn sổ thích hợp dùng cho học sinh, sinh viên, nhân viên văn phòng.</p>', 39000, 35100, 50, 'images/products/g4.jpg', 4, 0, 0);
+(22, 'Kem Chống Nắng La Roche-Posay Kiểm Soát Dầu SPF50+ 50ml', '<p>Kem chống nắng La Roche-Posay UVMune 400 Oil Control Gel Cream phiên bản mới được cải tiến với nồng độ phần trăm hoạt chất Airlicium được tăng lên, mang đến hiệu quả kiềm dầu tốt hơn đến 12h. Ngoài ra, sản phẩm còn có kết cấu mới dễ tán, thấm nhanh không gây vón, mang lại cho bạn một lớp finish mịn lì và bóng khỏe tự nhiên.</p>', 399000, 120000, 100, 'images/products/k1.jpg', 1, 1, 0),
+(23, 'Kem Chống Nắng Skin Aqua Tone Up Essence 50ml (hồng)', '<p>CÔNG DỤNG : - Sự hòa quyện sắc hồng đậm và sắc vỏ cam nhạt: tạo nên màu cánh hồng giúp hiệu chỉnh tông da tái xanh, che phủ khuyết điểm tự nhiên. -Hạt ngọc trai siêu mịn: phản chiếu ánh sáng da chiều, cho da trong suốt, rạng rỡ. - Vitamin C &amp; B3: dưỡng da sáng mịn - Hương hoa hồng tự nhiên lan tỏa hạnh phúc --Các hạt ngọc trai siêu mịn, - Hyaluronic Acid và Vitamin C LOẠI DA PHÙ HỢP : - Mọi loại da , đặc biệt tông da sáng có sắc tái xanh</p>', 199000, 199000, 80, 'images/products/k2.jpg', 1, 0, 0),
+(24, 'Kem chống nắng vật lý Fixderma Shadow Cream SPF 50+ PA+++', '<p>Kem chống nắng vật lý Fixderma Shadow Cream SPF 50+ PA+++ không những giúp ngăn chặn các dấu hiệu lão hóa do tiếp xúc với nhiều tia UVA/UVB mà còn cung cấp chất dưỡng ẩm tuyệt vời chống lại sự khô da, duy trì độ ẩm và sự mềm mại tối ưu cho da mà không gây dính, ngăn chặn cả hai bước sóng cực tím A &amp; B cũng như cung cấp thêm chất chống oxy hóa giúp bảo vệ da.</p>', 310000, 200000, 60, 'images/products/k3.jpg', 1, 0, 0),
+(25, 'Kem chống nắng dưỡng thể Cica & Sensitive Care Sun Lotion', 'Kem Cica & Sensitive Care Sun Lotion – chống nắng cica\r\nSản phẩm có kết cấu nhẹ nhàng, thẩm thấu nhanh chóng vào da, không hề gây bí rít khó chịu. Giúp làm trắng da. Giúp cải thiện nếp nhăn trên da. bảo vệ da khỏi tia UV với chỉ số chống nắng SPF50+ PA ++++.\r\nMang đến làn da mềm mịn & tăng cường hàng rào bảo vệ da, chống nắng hiệu quả.', 352000, 252000, 70, 'images/products/k4.jpg', 1, 0, 0),
+(26, 'Kem Chống Nắng Hây Hây - Bổ Sung AmitoseR Dưỡng Ẩm Thiên Nhiên', 'Kem chống nắng Hây Hây là sản phẩm kem chống nắng của công ty cổ phần mỹ phẩm thiên nhiên Cỏ Mềm giúp bảo vệ da khỏi tác động xấu của các tia cực tím, đem đến cho bạn làn da mềm mại, khỏe mạnh hơn đồng thời góp phần hạn chế quá trình lão hóa cho da và cải thiện tình trạng da dầu mụn.', 260000, 260000, 98, 'images/products/k5.jpg', 1, 0, 0),
+(27, 'Toner chiết xuất hoa hồng Mamonde', 'Đây là loại nước cân bằng da êm dịu nhất, chứa nước và chất dưỡng ẩm như glycerin và rất ít alcohol (từ 0-10%). Skin Freshener có chức năng cung cấp nước, refresh cho da, làm mát da. Bên cạnh đó, trong skin freshener còn sử dụng nước tinh chất từ các loại hoa như hoa hồng, cúc La Mã, oải hương, trà xanh cùng với chiết xuất nha đam, thảo dược… để tăng cường dưỡng chất cho làn da. Thông thường, ‘nước hoa hồng’ – thuật ngữ thường được dùng để nói về nước cân bằng da trong tiếng Việt, thực ra là để nói đến loại Skin Freshener này.', 250000, 250000, 50, 'images/products/t1.jpg', 2, 0, 0),
+(28, 'Nước Cân Bằng Eucerin ProAcne Toner Cho Da Nhờn Mụn | Eucerin', '<p>Eucerin ProAcne - Toner có thể được sử dụng như một bước trong tiến trình tẩy trang, giúp cân bằng độ ẩm và độ pH, tối ưu hiệu quả làm sạch và chăm sóc da hàng ngày. Sản phẩm có công thức chứa 2% Lactic Acid với hoạt tính hỗ trợ ngăn ngừa vi khuẩn gây mụn , thu nhỏ lỗ chân lông mà không làm khô da. Sản phẩm đặc biệt hiệu quả cho vùng da chữ T và các vùng da có vấn đề khác, đồng thời cũng có thể dùng chung với các loại thuốc trị mụn thông thường.</p>', 300000, 250000, 20, 'images/products/t2.jpg', 2, 0, 0),
+(29, 'Nước hoa hồng không mùi Klairs Supple Preparation Unscented Toner', '<p>Nước hoa hồng không mùi Dear Klairs dưỡng ẩm và làm mềm da Supple Preparation Unscented Toner có chiết xuất từ thực vật, giúp cân bằng độ pH, tăng cường hiệu quả chăm sóc da Toner có dạng trong suốt, không màu, lỏng, nhẹ, hơi nhớt, thấm rất nhanh trên da. Sản phẩm giúp loại bỏ bụi bẩn và bã nhờn dư thừa trên da sau khi rửa mặt đồng thời cân bằng độ pH để các bước skincare tiếp theo đạt hiệu quả hơn.</p>', 350000, 280000, 36, 'images/products/t3.jpg', 2, 0, 0),
+(30, 'NORMACNE Cleansing and regulating skin toner - Toner làm sạch dành cho da dầu, mụn', '<p>NORMACNE Cleansing and regulating skin toner là toner có công thức dành riêng cho da dầu, mụn, những làn da có vấn đề về lỗ chân lông Công dụng: Làm dịu viêm da cục bộ. Phục hồi cân bằng lớp màng Hydrolipid trên da. Ức chế sản xuất bã nhờn. Giảm mụn đầu đen, mụn viêm và thu nhỏ lỗ chân lông. Cấp ẩm an toàn cho da mụn với Glicerin Không làm khô, không gây kích ứng da.</p>', 350000, 350000, 40, 'images/products/t4.jpg', 2, 0, 0),
+(31, 'Toner cân bằng, kháng viêm Physiodermie Stabilizing Lotion 200ml ', 'Nước hoa hồng cân bằng độ pH cho da có tác dụng cấp ẩm, làm dịu, kháng viêm, se lỗ chân lông. Loại bỏ những tạp chất còn sót lại sau khi làm sạch bằng sữa rửa mặt, tạo độ pH lý tưởng cho da. Thích hợp cho da nhạy cảm sau laser, lăn kim, nặn mụn.', 1500000, 1250000, 20, 'images/products/t5.jpg', 2, 0, 0),
+(32, 'SON KEM BLACK ROUGE POWER PROOF MATTE TINT (DÒNG MT) CHÍNH HÃNG', 'Thỏi son mang đậm phong cách Black Rouge với sự cải tiến thỏi nhỏ gọn, dáng thanh tao.\r\nThân vỏ hình trụ tròn, trong suốt, hơi mờ, giúp bạn nhìn được màu son thật bên trong.\r\nNắp son vặn màu hồng nhạt mang lại cảm giác ngọt ngào, dễ chịu.\r\nĐầu cọ cải tiến lỗ thoát khí giúp môi ẩm mà vẫn lì, hạn chế gây khô son và giúp màu bám mướt hơn.', 102000, 99000, 120, 'images/products/s1.jpg', 3, 0, 0),
+(33, 'Son Kem Bóng Bền Màu, Nhẹ Môi Maybelline New York Superstay Vinyl Ink 4.2ml', 'Son Kem Bóng Bền Màu, Nhẹ Môi Maybelline New York Superstay Vinyl Ink 4.2ml là son kem lì đến từ thương hiệu Maybelline chứa công thức đột phá mới với công nghệ “khóa” màu thách thức lem trôi, nhẹ mướt, để lại lớp bóng nhẹ tinh tế, cho đôi môi căng tràn sức sống. Son bóng lên màu chuẩn, nhưng vẫn duy trì độ ẩm và giữ được sự mềm mịn cho môi.', 298000, 259000, 45, 'images/products/s2.jpg', 3, 0, 0),
+(34, 'Son Kem Bóng Bền Màu, Nhẹ Môi Maybelline New York Superstay Vinyl Ink 4.2ml', 'Son Kem Bóng Bền Màu, Nhẹ Môi Maybelline New York Superstay Vinyl Ink 4.2ml là son kem lì đến từ thương hiệu Maybelline chứa công thức đột phá mới với công nghệ “khóa” màu thách thức lem trôi, nhẹ mướt, để lại lớp bóng nhẹ tinh tế, cho đôi môi căng tràn sức sống. Son bóng lên màu chuẩn, nhưng vẫn duy trì độ ẩm và giữ được sự mềm mịn cho môi.', 298000, 259000, 45, 'images/products/s2.jpg', 3, 0, 0),
+(35, 'Son Kem Fenty Beauty Icon Velvet Liquid Lipstick THE MVP Màu Đỏ Tươi', 'Son Kem Fenty Beauty Icon Velvet Liquid Lipstick THE MVP Màu Đỏ Tươi là thỏi son cao cấp đến từ thương hiệu Fenty Beauty nổi tiếng. Fenty Beauty THE MVP sở hữu tồn màu đỏ tươi nổi bật thu hút cùng chất son mịn lì cho đôi môi thêm xinh xắn, quyến rũ hơn.', 980000, 899000, 67, 'images/products/s3.jpg', 3, 0, 0),
+(36, 'Son Kem Lì 3CE Hazy Lip Clay (New) 4g', 'Son Kem Lì 3CE Hazy Lip Clay (Mới) là dòng son tint dạng kem đến từ thương hiệu 3CE của Hàn Quốc được ra mắt với các tone màu cực trendy và tôn da, cực kì phù hợp cho tiết trời Thu – Đông.', 245000, 245000, 34, 'images/products/s4.jpg', 3, 0, 0),
+(37, 'Son Thỏi 3CE Mịn Lì 222 Step And Go - Đỏ Đất 3.5g Mood Recipe Matte Lip Color', 'Son Thỏi Mịn Lì 3CE 3.5g là sản phẩm son môi đến từ thương hiệu mỹ phẩm nổi tiếng 3CE của Hàn Quốc, chất son dạng Primer matte tăng độ bám, giảm hiện tượng son trượt môi, tạo đường viền môi gọn gàng, không hề gây khó chịu hay nặng môi giúp môi thêm gợi cảm, thu hút.', 380000, 344000, 38, 'images/products/s5.jpg', 3, 0, 0),
+(38, 'Kem Dưỡng I\'m From Vitamin Tree Water Gel Dưỡng Ẩm Sáng Da Kiềm Dầu 75g', 'Kem dưỡng là bước cuối cùng trong quá trình chăm sóc da. Vì thế lựa chọn một sản phẩm kem dưỡng có tác dụng cấp ẩm, cải thiện và phục hồi sức khỏe cho da, bảo vệ da,... là một việc rất quan trọng để có một làn da trẻ trung, khỏe đẹp. Kem Dưỡng Da I\'m From Vitamin Tree Water Gel đến từ thương hiệu mỹ phẩm thiên nhiên nổi tiếng của Hàn Quốc I’m From chính là một sản phẩm dưỡng da đa công dụng mà mọi cô gái đang tìm kiếm.', 340000, 308000, 35, 'images/products/d1.jpg', 4, 0, 0),
+(39, 'Kyung Lab Kem dưỡng Ultra Hydrating Cream 50ml', 'Kem dưỡng Kyung Lab Ultra Hydrating Cream có tác dụng cấp ẩm vượt trội, bổ sung nước tầng sâu, giúp tăng sinh Collagen, ngăn ngừa lão hóa, dưỡng da trắng hồng tự nhiên.', 550000, 500000, 57, 'images/products/d2.jpg', 4, 0, 0),
+(40, 'Kem dưỡng ẩm cho da khô, mất nước Klairs Rich Moist Soothing Cream 80ml', 'Sản phẩm giúp dưỡng ẩm sâu nhằm khôi phục cân bằng độ ẩm, giúp da trở nên rạng rỡ và căng bóng hơn, bên cạnh đó làm dịu da và giảm mẩn đỏ, hỗ trợ giảm sự xuất hiện của lỗ chân lông to, cho làn da cảm giác thoải mái và dễ chịu suốt cả ngày dài.', 515000, 435000, 36, 'images/products/d3.jpg', 4, 0, 0),
+(41, 'Kem Dưỡng Dạng Nước Kiehl\'s Calendula Serum-Infused Water Cream 50ml', 'Tinh chất Hoa Cúc được điều chế với nồng độ cô đặc cao nhất của chiết xuất Hoa Cúc và hàng trăm cánh Hoa Cúc nghiền nhuyễn siêu mịn. Trong công thức của Kiehl\'s, hoa cúc Calendula được biết đến với công dụng liên tục bổ sung các hợp chất quan trọng giúp giảm cảm giác khó chịu trên da dài lâu.', 1500000, 1500000, 18, 'images/products/d4.jpg', 4, 0, 0),
+(42, 'Kem Dưỡng Innisfree Green Tea Balancing Cream Dưỡng Ẩm, Làm Dịu Cho Da Mụn 50ml', 'Innisfree là thương hiệu mỹ phẩm dưỡng da hàng đầu của Hàn Quốc và được đông đảo các chị em yêu thích và tin dùng. Các sản phẩm của hãng nổi bật với thành phần chính có nguồn gốc thiên nhiên từ đảo Jeju, chứa nhiều công dụng dưỡng da, lành tính, an toàn cho da. Trong đó, không thể không kể đến Kem Dưỡng Ẩm, Làm Dịu Cho Da Mụn Innisfree Green Tea 50ml nằm trong dòng sản phẩm chăm sóc da chiết xuất trà xanh “best-seller” của hãng.', 275000, 249000, 45, 'images/products/d5.jpg', 4, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguoidung`
+-- Cấu trúc bảng cho bảng `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -147,41 +144,41 @@ CREATE TABLE `nguoidung` (
   `sodienthoai` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `matkhau` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `hoten` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `loai` tinyint(4) NOT NULL DEFAULT 3,
-  `trangthai` tinyint(4) NOT NULL DEFAULT 1,
+  `loai` tinyint(4) NOT NULL DEFAULT '3',
+  `trangthai` tinyint(4) NOT NULL DEFAULT '1',
   `hinhanh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `nguoidung`
+-- Đang đổ dữ liệu cho bảng `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`id`, `email`, `sodienthoai`, `matkhau`, `hoten`, `loai`, `trangthai`, `hinhanh`) VALUES
-(1, 'abc@abc.com', '0988994683', '900150983cd24fb0d6963f7d28e17f72', 'Long Xuyên', 1, 1, 'signup.png'),
+(1, 'abc@abc.com', '0988994683', '827ccb0eea8a706c4c34a16891f84e7b', 'Long Xuyên', 1, 1, 'signup.png'),
 (2, 'def@abc.com', '11111111', '900150983cd24fb0d6963f7d28e17f72', 'Mèo máy Doraemon', 2, 1, 'avatar.jpg'),
 (3, 'ghi@abc.com', '0988994685', '900150983cd24fb0d6963f7d28e17f72', 'Nhân viên GHI', 2, 1, NULL),
 (4, 'kh1@gmail.com', '0988994686', '900150983cd24fb0d6963f7d28e17f72', 'Nguyễn Thị Thu An', 3, 1, NULL),
 (5, 'kh2@gmail.com', '0988994687', '900150983cd24fb0d6963f7d28e17f72', 'Hồ Xuân Minh', 3, 1, NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `danhmuc`
+-- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `diachi`
+-- Chỉ mục cho bảng `diachi`
 --
 ALTER TABLE `diachi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nguoidung_id` (`nguoidung_id`);
 
 --
--- Indexes for table `donhang`
+-- Chỉ mục cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`id`),
@@ -189,7 +186,7 @@ ALTER TABLE `donhang`
   ADD KEY `diachi_id` (`diachi_id`);
 
 --
--- Indexes for table `donhangct`
+-- Chỉ mục cho bảng `donhangct`
 --
 ALTER TABLE `donhangct`
   ADD PRIMARY KEY (`id`),
@@ -197,83 +194,83 @@ ALTER TABLE `donhangct`
   ADD KEY `mathang_id` (`mathang_id`);
 
 --
--- Indexes for table `mathang`
+-- Chỉ mục cho bảng `mathang`
 --
 ALTER TABLE `mathang`
   ADD PRIMARY KEY (`id`),
   ADD KEY `danhmuc_id` (`danhmuc_id`);
 
 --
--- Indexes for table `nguoidung`
+-- Chỉ mục cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `danhmuc`
+-- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `diachi`
+-- AUTO_INCREMENT cho bảng `diachi`
 --
 ALTER TABLE `diachi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `donhang`
+-- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `donhangct`
+-- AUTO_INCREMENT cho bảng `donhangct`
 --
 ALTER TABLE `donhangct`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mathang`
+-- AUTO_INCREMENT cho bảng `mathang`
 --
 ALTER TABLE `mathang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `nguoidung`
+-- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `diachi`
+-- Các ràng buộc cho bảng `diachi`
 --
 ALTER TABLE `diachi`
   ADD CONSTRAINT `diachi_ibfk_1` FOREIGN KEY (`nguoidung_id`) REFERENCES `nguoidung` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `donhang`
+-- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`nguoidung_id`) REFERENCES `nguoidung` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `donhangct`
+-- Các ràng buộc cho bảng `donhangct`
 --
 ALTER TABLE `donhangct`
   ADD CONSTRAINT `donhangct_ibfk_1` FOREIGN KEY (`donhang_id`) REFERENCES `donhang` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `donhangct_ibfk_2` FOREIGN KEY (`mathang_id`) REFERENCES `mathang` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `mathang`
+-- Các ràng buộc cho bảng `mathang`
 --
 ALTER TABLE `mathang`
   ADD CONSTRAINT `mathang_ibfk_1` FOREIGN KEY (`danhmuc_id`) REFERENCES `danhmuc` (`id`) ON UPDATE CASCADE;

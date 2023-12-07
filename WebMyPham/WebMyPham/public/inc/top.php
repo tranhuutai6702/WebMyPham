@@ -10,6 +10,7 @@
 
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
 
@@ -24,8 +25,13 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><input type="text" placeholder="Tìm kiếm: son, kem dưỡng ẩm, toner,..."
-                            style="width:300px; padding: 5px;">
+                    <li class="nav-item" style="position: relative;">
+                        <form action="" method="">
+                            <input type="text" placeholder="Tìm kiếm: son, kem dưỡng ẩm, toner,..."
+                                style="width:320px; padding: 5px;">
+                            <i class="bi bi-search"
+                                style="z-index: 10; color: dark; position: absolute; right: 0; top: 15%; padding: 0 8px;"></i>
+                        </form>
                     </li>
                 </ul>
                 <div class="d-flex">
@@ -41,24 +47,30 @@
                             nhập</a>
                     <?php } ?>
                     &nbsp;
-                        <a href="index.php?action=giohang" class="btn btn-outline-light" ><i class="bi bi-cart3"></i> Giỏ hàng <span class="badge bg-danger text-white ms-1 rounded-pill"><?php echo demsoluongtronggio(); ?></span></a>
+                    <a href="index.php?action=giohang" class="btn btn-outline-light"><i class="bi bi-cart3"></i> Giỏ
+                        hàng <span class="badge bg-danger text-white ms-1 rounded-pill">
+                            <?php echo demsoluongtronggio(); ?>
+                        </span></a>
                 </div>
             </div>
         </div>
     </nav>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary p-3">
-        <div class="container">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Danh mục sản phẩm</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <nav class="bg-secondary">
+        <div class="">
+            <div class="w3-dropdown-hover bg-secondary">
+                <div class="w3-button"><i class="bi bi-list"></i>
+                    Danh mục sản phẩm
+                </div>
+
+                <div class="w3-dropdown-content w3-bar-block w3-border">
                     <?php foreach ($danhmuc as $d): ?>
-                        <li><a class="dropdown-item" href="?action=group&id=<?php echo $d["id"]; ?>">
-                                <?php echo $d["tendanhmuc"]; ?>
-                            </a></li>
+                        <a class="w3-bar-item w3-button" href="?action=group&id=<?php echo $d["id"]; ?>">
+                            <?php echo $d["tendanhmuc"]; ?>
+                        </a>
                     <?php endforeach; ?>
-                </ul>
-            </li>
+                </div>
+            </div>
+        </div>
     </nav>
     <!-- Section-->
     <section class="py-5">

@@ -194,5 +194,23 @@ class MATHANG{
         }
     }
 
+    // Cập nhật số lượng tồn
+    public function capnhatsoluong($id, $soluong){
+        $dbcon = DATABASE::connect();
+        try{
+            $sql = "UPDATE mathang SET soluongton=soluongton - :soluong WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":soluong", $soluong);
+            $cmd->bindValue(":id", $id);
+            $result = $cmd->execute();            
+            return $result;
+        }
+        catch(PDOException $e){
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
 }
 ?>
