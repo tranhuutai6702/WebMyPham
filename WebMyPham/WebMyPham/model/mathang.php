@@ -76,8 +76,9 @@ class MATHANG{
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":id", $id);
             $cmd->execute();
-            $result = $cmd->fetch();             
+            $result = $cmd->fetch(); 
             return $result;
+            
         }
         catch(PDOException $e){
             $error_message = $e->getMessage();

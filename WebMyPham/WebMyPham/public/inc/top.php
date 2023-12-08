@@ -47,12 +47,12 @@
                             nhập</a>
                     <?php } ?>
                     &nbsp;
-                    <a href="index.php?action=giohang" class="btn btn-outline-light"><i class="bi bi-cart3"></i> Giỏ
-                        hàng <span class="badge bg-danger text-white ms-1 rounded-pill">
-                            <?php echo demsoluongtronggio(); ?>
+                    <a href="index.php?action=giohang" class="btn btn-outline-light"><i class="bi bi-cart3"></i> 
+                     <span class="badge bg-danger text-white ms-1 rounded-pill">
+                            <?php demsoluongtronggio(); ?>
                         </span></a>
                 </div>
-            </div>
+            </div>  
         </div>
     </nav>
     <nav class="bg-secondary">

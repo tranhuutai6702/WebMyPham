@@ -27,13 +27,7 @@
             <input class="btn btn-primary"  type="submit" value="Lưu">
             <input class="btn btn-warning"  type="reset" value="Hủy">
           </div>
-          </form>          
-		        
-		  
-
-
-
-
+          </form>    
         </div>
         
       </div>

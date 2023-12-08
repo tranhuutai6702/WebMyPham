@@ -7,14 +7,14 @@ if (!isset($_SESSION['giohang']) ) {
 // Hàm thêm sản phẩm vào giỏ
 function themhangvaogio($id, $soluong) {
 //    //Tạo thể hiện của lớp MATHANG
-//    $mh_db = new MATHANG();
+    $mh_db = new MATHANG();
     //Cập nhập Số lượng vào SESSION - Làm tròn
     $_SESSION['giohang'][$id] = round($soluong, 0);
 //    //Lấy thông tin của sản phẩm dựa vào $id
-//    $mh = $mh_db->laymathangtheoid($id);
+    $mh = $mh_db->laymathangtheoid($id);
 //    //Cập nhật thông tin của Mã danh mục và Tên danh mục vào mảng SESSION
-//    $_SESSION['madm_cuoi'] = $mh['danhmuc_id'];
-//    $_SESSION['tendm_cuoi'] = $mh['tendanhmuc'];
+    $_SESSION['madm_cuoi'] = $mh['danhmuc_id'];
+    $_SESSION['tendm_cuoi'] = $mh['tendanhmuc'];
 }
 
 
@@ -33,13 +33,13 @@ function xoamotmathang($id) {
 }
 
 // Hàm lấy mảng các sản phẩm trong giohang
+// Hàm lấy mảng các sản phẩm trong giohang
 function laygiohang() {
-	
-    //Tạo mảng rỗng để lưu danh sách sản phẩm trong giỏ
+    // Tạo mảng rỗng để lưu danh sách sản phẩm trong giỏ
     $mh = array();
-    $mh_db = new MATHANG();
+    $mh_db = new MATHANG(); // Tạo thể hiện của lớp MATHANG
     
-    //Duyệt mảng SESSION giohang và lấy từng id sản phẩm cùng số lượng
+    // Duyệt mảng SESSION giohang và lấy từng id sản phẩm cùng số lượng
     foreach ($_SESSION['giohang'] as $id => $soluong ) {
         // Gọi hàm lấy thông tin của sản phẩm theo mã sản phẩm
         $m = $mh_db->laymathangtheoid($id);
