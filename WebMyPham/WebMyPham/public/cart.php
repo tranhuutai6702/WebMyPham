@@ -11,7 +11,7 @@ else{
 <h3 class="text-info">Giỏ hàng của bạn:</h3>
 <form action="index.php">
 <table class="table table-hover">
-    <tr><th>Hình ảnh</th><th>Tên hàng</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th></tr>
+    <tr><th>Hình ảnh</th><th>Tên mặt hàng</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th></tr>
 <?php foreach($giohang as $id => $mh):   ?>
     <tr>
         <td><img width="50" src="../<?php echo $mh["hinhanh"]; ?>"></td>
