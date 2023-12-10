@@ -86,6 +86,25 @@ class MATHANG{
             exit();
         }
     }
+
+    // Lấy mặt hàng theo id
+    public function laydanhmuctheoid($id){
+        $dbcon = DATABASE::connect();
+        try{
+            $sql = "SELECT * FROM danhmuc WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
+            $cmd->execute();
+            $result = $cmd->fetch(); 
+            return $result;
+            
+        }
+        catch(PDOException $e){
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Cập nhật lượt xem
     public function tangluotxem($id){
         $dbcon = DATABASE::connect();

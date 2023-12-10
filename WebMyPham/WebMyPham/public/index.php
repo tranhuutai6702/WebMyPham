@@ -159,6 +159,25 @@ switch ($action) {
             include("loginform.php");
         }
         break;
+    case "dangky":
+        include("registerform.php");
+        break;
+    case "xldangky":
+        $ten = $_POST['txtten'];
+        $sdt = $_POST['txtsdt'];
+        $email = $_POST["txtemail"];
+        $matkhau = $_POST["txtmatkhau"];
+        $matkhauxacnhan = $_POST["txtmatkhauxacnhan"];
+        $kh = new KHACHHANG();
+        if ($kh->themkhachhang($email,$matkhauxacnhan,$sdt,$ten) == TRUE) {
+            $_SESSION["khachhang"] = $kh->laythongtinkhachhang($email);
+            // đọc thông tin (đơn hàng) của khách hàng
+            include("info.php");
+        } else {
+            //$tb = "Đăng nhập không thành công!";
+            include("loginform.php");
+        }
+        break;
     case "thongtin":
         // đọc thông tin các đơn của khách
         include("info.php"); // trang info.php hiển thị các đơn đã đặt

@@ -12,9 +12,10 @@ function themhangvaogio($id, $soluong) {
     $_SESSION['giohang'][$id] = round($soluong, 0);
 //    //Lấy thông tin của sản phẩm dựa vào $id
     $mh = $mh_db->laymathangtheoid($id);
+    $dm = $mh_db->laydanhmuctheoid($mh['danhmuc_id']);
 //    //Cập nhật thông tin của Mã danh mục và Tên danh mục vào mảng SESSION
-    $_SESSION['madm_cuoi'] = $mh['danhmuc_id'];
-    $_SESSION['tendm_cuoi'] = $mh['tendanhmuc'];
+    $_SESSION['madm_cuoi'] = $dm['id'];
+    $_SESSION['tendm_cuoi'] = $dm['tendanhmuc'];
 }
 
 
