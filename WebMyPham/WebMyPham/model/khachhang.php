@@ -2,15 +2,15 @@
 class KHACHHANG{
 	
 	// Thêm khách hàng mới, trả về khóa của dòng mới thêm
-	public function themkhachhang($email,$matkhauxacnhan,$sdt,$ten){
+	public function themkhachhang($email,$matkhauxacnhan, $sodienthoai, $hoten){
 		$db = DATABASE::connect();
 		try{
 			$sql = "INSERT INTO nguoidung(email,matkhau,sodienthoai,hoten,loai,trangthai) VALUES(:email,:matkhau,:sodt,:hoten,3,1)";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(':email',$email);
-			$cmd->bindValue(':matkhau',$matkhauxacnhan);
-			$cmd->bindValue(':sodt',$sdt);
-			$cmd->bindValue(':hoten',$ten);			
+			$cmd->bindValue(':sodt',$sodienthoai);
+			$cmd->bindValue(':hoten',$hoten);	
+			$cmd->bindValue(':matkhau',md5($matkhauxacnhan));		
 			$cmd->execute();
 			$id = $db->lastInsertId();
 			return $id;

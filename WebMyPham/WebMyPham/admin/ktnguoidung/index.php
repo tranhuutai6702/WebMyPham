@@ -31,7 +31,7 @@ switch($action){
         $email = $_REQUEST["txtemail"];
         $matkhau = $_REQUEST["txtmatkhau"];
         if($nd->kiemtranguoidunghople($email,$matkhau)==TRUE){
-            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email); // đặt biến session
+            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email); 
             include("main.php");
         }
         else{

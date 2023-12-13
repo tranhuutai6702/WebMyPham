@@ -1,4 +1,5 @@
 <?php
+include("inc/top.php");
 ?>
 <div class="row">
 	<div class="col-sm-4"></div>

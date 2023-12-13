@@ -92,8 +92,12 @@ switch ($action) {
         include("cart.php");
         break;
     case "thanhtoan":
+        if(isset( $_SESSION["khachhang"])){
         $giohang = laygiohang();
         include("checkout.php");
+        }else{
+            header ("Location:?action=dangnhap");
+        }
         break;
     case "luudonhang":
 
@@ -152,7 +156,10 @@ switch ($action) {
         $kh = new KHACHHANG();
         if ($kh->kiemtrakhachhanghople($email, $matkhau) == TRUE) {
             $_SESSION["khachhang"] = $kh->laythongtinkhachhang($email);
-            // đọc thông tin (đơn hàng) của kh
+
+            if(isset($_SESSION['giohang']) ){
+               $_SESSION['giohang'] = [];
+            }
             include("info.php");
         } else {
             //$tb = "Đăng nhập không thành công!";

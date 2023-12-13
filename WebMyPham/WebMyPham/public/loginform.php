@@ -23,6 +23,3 @@ include("inc/top.php");
     </div>
     <div class="col-sm-4"></div>
 </div>
-<?php
-include("inc/bottom.php");
-?>

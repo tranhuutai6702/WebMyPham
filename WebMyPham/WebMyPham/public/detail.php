@@ -32,7 +32,7 @@
       </div>
       <br>
     </div>
-    <div class="col-sm-3"> 
+    <div class="col-sm-3" style="overflow: auto; height: 1100px"> 
       
       <h3 class="text-warning">Cùng danh mục:</h3>
 
