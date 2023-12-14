@@ -210,6 +210,10 @@ switch ($action) {
         $mathang = $mh->laymathang();
         include("main.php");
         break;
+
+    case"cauhoi":
+        include("cauhoi.php");
+        break;
     default:
         break;
 }

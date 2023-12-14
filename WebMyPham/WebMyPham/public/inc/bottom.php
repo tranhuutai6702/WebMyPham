@@ -67,9 +67,18 @@
       </div>
       <div class="col-md-3 text-muted">
         <h4>DỊCH VỤ KHÁCH HÀNG</h4>
-        <a href="#" class="list-group-item">Hướng dẫn mua hàng</a>
-        <a href="#" class="list-group-item">Câu hỏi thường gặp</a>
-        <a href="#" class="list-group-item">Liên hệ với chúng tôi</a>
+        <a href="?action=cauhoi" class="list-group-item">Câu hỏi thường gặp</a>
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Liên hệ với chúng tôi
+            </button>
+            <ul class="dropdown-menu">
+               <li><a class="dropdown-item bi bi-facebook mask" target="t_blank" href="https://www.facebook.com/animedreams2023">Facebook</a></li>
+              <li><a class="dropdown-item bi bi-twitter" target="t_blank" href="#">Twitter</a></li>
+            
+            </ul>
+        </div>
+        
       </div>
     </div>
     <hr>
