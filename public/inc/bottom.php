@@ -15,9 +15,9 @@
           <li class="nav-item">
             <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Nổi bật</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" href="#menu2">Xem nhiều</a>
-          </li>
+          </li> -->
         </ul>
 
         <!-- Tab panes -->
@@ -27,11 +27,10 @@
             <?php include("inc/topview.php"); ?>
 
           </div>
-          <div id="menu2" class="container tab-pane fade"><br>
+          <!-- <div id="menu2" class="container tab-pane fade"><br>
             <h3>Sản phẩm xem nhiều</h3>
-            <p>Đang cập nhật...</p>
-
-          </div>
+            <p>Đang cập nhật...</p> -->
+          <!-- </div> -->
         </div>
       </div>
     </div>
@@ -57,7 +56,7 @@
           <b><i>Email:</i></b> thachhuynh541@gmail.com
         </p>
       </div>
-      <div class="col-md-3 text-muted">
+      <div class="col-md-3 text-light">
         <h4>DANH MỤC HÀNG</h4>
         <?php foreach ($danhmuc as $d): ?>
           <a class="list-group-item" href="?action=group&id=<?php echo $d["id"]; ?>">
@@ -65,24 +64,18 @@
           </a>
         <?php endforeach; ?>
       </div>
-      <div class="col-md-3 text-muted">
+      <div class="col-md-3 text-light">
         <h4>DỊCH VỤ KHÁCH HÀNG</h4>
         <a href="?action=cauhoi" class="list-group-item">Câu hỏi thường gặp</a>
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-              Liên hệ với chúng tôi
-            </button>
-            <ul class="dropdown-menu">
-               <li><a class="dropdown-item bi bi-facebook mask" target="t_blank" href="https://www.facebook.com/animedreams2023">Facebook</a></li>
-              <li><a class="dropdown-item bi bi-twitter" target="t_blank" href="#">Twitter</a></li>
-            
-            </ul>
-        </div>
-        
+        <a href="https://www.facebook.com/animedreams2023" target="t_blank" class="bi bi-facebook mask"
+          style="text-decoration:none">Liên hệ với
+          chúng tôi</a>
       </div>
+
     </div>
-    <hr>
-    <p class="m-0 text-center text-warning fw-bolder">Copyright &copy; TPT Shop 2023</p>
+  </div>
+  <hr>
+  <p class="m-0 text-center text-warning fw-bolder">Copyright &copy; TPT Shop 2023</p>
   </div>
 </footer>
 

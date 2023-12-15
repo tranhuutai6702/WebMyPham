@@ -22,7 +22,7 @@ if (isset($_REQUEST["action"])) {
 
 switch ($action) {
     case "null":
-        if(isset($_GET['search'])){
+        if (isset($_GET['search'])) {
             $mathang = $mh->laymathangsearch($_GET['search']);
         } else {
             $mathang = $mh->laymathang();
@@ -71,7 +71,7 @@ switch ($action) {
         //themhangvaogio($_REQUEST["id"], $soluong);
 
         $giohang = laygiohang();
-        include("cart.php");
+        header("Location:index.php");
         break;
     case "giohang":
         $giohang = laygiohang();
@@ -96,11 +96,11 @@ switch ($action) {
         include("cart.php");
         break;
     case "thanhtoan":
-        if(isset( $_SESSION["khachhang"])){
-        $giohang = laygiohang();
-        include("checkout.php");
-        }else{
-            header ("Location:?action=dangnhap");
+        if (isset($_SESSION["khachhang"])) {
+            $giohang = laygiohang();
+            include("checkout.php");
+        } else {
+            header("Location:?action=dangnhap");
         }
         break;
     case "luudonhang":
@@ -161,10 +161,10 @@ switch ($action) {
         if ($kh->kiemtrakhachhanghople($email, $matkhau) == TRUE) {
             $_SESSION["khachhang"] = $kh->laythongtinkhachhang($email);
 
-            if(isset($_SESSION['giohang']) ){
-               $_SESSION['giohang'] = [];
+            if (isset($_SESSION['giohang'])) {
+                $_SESSION['giohang'] = [];
             }
-            include("info.php");
+            header("Location: index.php");
         } else {
             //$tb = "Đăng nhập không thành công!";
             include("loginform.php");
@@ -180,10 +180,10 @@ switch ($action) {
         $matkhau = $_POST["txtmatkhau"];
         $matkhauxacnhan = $_POST["txtmatkhauxacnhan"];
         $kh = new KHACHHANG();
-        if ($kh->themkhachhang($email,$matkhauxacnhan,$sdt,$ten) == TRUE) {
+        if ($kh->themkhachhang($email, $matkhauxacnhan, $sdt, $ten) == TRUE) {
             $_SESSION["khachhang"] = $kh->laythongtinkhachhang($email);
             // đọc thông tin (đơn hàng) của khách hàng
-            include("info.php");
+            header("Location: index.php");
         } else {
             //$tb = "Đăng nhập không thành công!";
             include("loginform.php");
@@ -215,7 +215,7 @@ switch ($action) {
         include("main.php");
         break;
 
-    case"cauhoi":
+    case "cauhoi":
         include("cauhoi.php");
         break;
     default:

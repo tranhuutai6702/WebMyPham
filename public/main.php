@@ -48,10 +48,14 @@ foreach ($danhmuc as $d) {
                                     <span class="text-muted text-decoration-line-through">
                                         <?php echo number_format($m["giagoc"]); ?>đ
                                     </span>
-                                <?php } // end if ?>
-                                <span class="text-danger fw-bolder">
-                                    <?php echo number_format($m["giaban"]); ?>đ
-                                </span>
+                                    <span class="text-danger fw-bolder">
+                                        <?php echo number_format($m["giaban"]); ?>đ
+                                    </span>
+                                <?php } else { ?>
+                                    <span class="text-muted fw-bolder">
+                                        <?php echo number_format($m["giaban"]); ?>đ
+                                    </span>
+                                <?php } ?>
                             </div>
                         </div>
                         <!-- Product actions-->
