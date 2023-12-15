@@ -22,7 +22,11 @@ if (isset($_REQUEST["action"])) {
 
 switch ($action) {
     case "null":
-        $mathang = $mh->laymathang();
+        if(isset($_GET['search'])){
+            $mathang = $mh->laymathangsearch($_GET['search']);
+        } else {
+            $mathang = $mh->laymathang();
+        }
         include("main.php");
         break;
     case "group":

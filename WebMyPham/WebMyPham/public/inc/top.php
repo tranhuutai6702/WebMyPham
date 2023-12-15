@@ -17,22 +17,28 @@
 <body id="top">
 
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-        <div class="container px-4 px-lg-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">   
+        <div class="container px-4">
             <a class="navbar-brand" href="index.php"><i class="bi bi-shop-window"></i> TPT Shop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item" style="position: relative;">
+                  <!--   <li class="nav-item" style="position: relative;">
                         <form action="" method="">
                             <input type="text" placeholder="Tìm kiếm: son, kem dưỡng ẩm, toner,..."
                                 style="width:320px; padding: 5px;">
                             <i class="bi bi-search"
                                 style="z-index: 10; color: dark; position: absolute; right: 0; top: 15%; padding: 0 8px;"></i>
                         </form>
-                    </li>
+                    </li> -->
+                    <li class="nav-item">
+                            <form class="bg-light" style="display: flex;">
+                                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+                                <button href="#!" class="btn btn-success" type="submit">Search</button>
+                            </form>
+                        </li>
                 </ul>
                 <div class="d-flex">
                     <?php if (isset($_SESSION["khachhang"])) { ?>
